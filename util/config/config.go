@@ -26,8 +26,8 @@ var TgConf TgConfig
 // init 配置加载
 func init() {
 	//viper.AddConfigPath("./conf")
-	//viper.SetConfigType("toml")
-	viper.SetConfigFile("./conf/bot.ini")
+	//viper.SetConfigType("yaml")
+	viper.SetConfigFile("./conf/bot.yaml")
 	err := viper.ReadInConfig()
 
 	fmt.Println(viper.ConfigFileUsed())
