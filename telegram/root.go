@@ -30,6 +30,8 @@ func BotStart()  {
 		}
 	}
 
+	klog.V(2).Infof("tg token: %s", config.TgConf.TgToken)
+
 	bots, err = tb.NewBot(botSetting)
 	if err != nil {
 		klog.ErrorS(err, "NewBot出错")
