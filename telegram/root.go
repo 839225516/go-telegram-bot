@@ -2,17 +2,18 @@ package telegram
 
 import (
 	"go-telegram-bot/util/config"
-	tb "gopkg.in/tucnak/telebot.v2"
 	"net/http"
 	"net/url"
 	"time"
+
+	tb "gopkg.in/tucnak/telebot.v2"
 	"k8s.io/klog/v2"
 )
 
 var bots *tb.Bot
 
 // BotStart 机器人启动
-func BotStart()  {
+func BotStart() {
 	var err error
 
 	botSetting := tb.Settings{
@@ -30,7 +31,7 @@ func BotStart()  {
 		}
 	}
 
-	klog.V(2).Infof("tg token: %s", config.TgConf.TgToken)
+	//klog.V(2).Infof("tg token: %s", config.TgConf.TgToken)
 
 	bots, err = tb.NewBot(botSetting)
 	if err != nil {
@@ -40,7 +41,7 @@ func BotStart()  {
 
 	err = bots.SetCommands(Cmds)
 	if err != nil {
-		klog.ErrorS(err,"SetCommands出错")
+		klog.ErrorS(err, "SetCommands出错")
 		return
 	}
 	RegisterHandle()
@@ -56,7 +57,8 @@ func RegisterHandle() {
 	bots.Handle(tb.OnUserLeft, func(m *tb.Message) {
 		err := bots.Delete(m)
 		if err != nil {
-			klog.ErrorS(err,"删除message出错", m.Text)
+			klog.ErrorS(err, "删除message出错", m.Text)
 		}
+		bots.Send(m.Sender, "走好不送！")
 	})
 }

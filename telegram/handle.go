@@ -265,6 +265,7 @@ func sendCaptcha(m *tb.Message) {
 	if !m.Private() {
 		return
 	}
+
 	// 是否在待验证队列
 	user, ok := PendingCaptchaList.Get(m.Sender.ID)
 	if !ok {
