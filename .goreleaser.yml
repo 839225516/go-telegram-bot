@@ -18,7 +18,7 @@ builds:
   - env:
     - CGO_ENABLED=0
     
-  - binary: go-telegram-bot
+  #- binary: go-telegram-bot
     #main: ./main.go
     goos:
       - windows
