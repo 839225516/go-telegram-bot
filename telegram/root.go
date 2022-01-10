@@ -55,10 +55,12 @@ func RegisterHandle() {
 	bots.Handle(tb.OnText, onText)
 	bots.Handle(tb.OnUserJoined, userJoinGroup)
 	bots.Handle(tb.OnUserLeft, func(m *tb.Message) {
+		//userID := m.UserLeft.ID
+
 		err := bots.Delete(m)
 		if err != nil {
 			klog.ErrorS(err, "删除message出错", m.Text)
 		}
-		bots.Send(m.Sender, "走好不送！")
+		bots.Send(m.Chat, m.UserLeft.Username + "走好不送！")
 	})
 }
