@@ -1,3 +1,8 @@
+before:
+  hooks:
+    # you may remove this if you don't use vgo
+    - go mod download
+
 builds:
   - env:
     - CGO_ENABLED=0
