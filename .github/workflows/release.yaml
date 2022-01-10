@@ -83,18 +83,18 @@ jobs:
           echo "GOOS=$GOOS" >> $GITHUB_ENV
           echo "GOARCH=$GOARCH" >> $GITHUB_ENV
 
-      - name: Get the dependencies
-        run: |
-          go mod download
-
       - name: Validates GO releaser config
-        uses: docker://goreleaser/goreleaser:latest
+        uses: goreleaser/goreleaser-action@v2
         with:
+          distribution: goreleaser
+          version: latest
           args: check
 
       - name: Create release on GitHub
-        uses: docker://goreleaser/goreleaser:latest
+        uses: goreleaser/goreleaser-action@v2
         with:
+          distribution: goreleaser
+          version: latest
           args: release
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}          
